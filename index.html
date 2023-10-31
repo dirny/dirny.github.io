@@ -87,6 +87,17 @@
             #backfjjj:hover {
                 background-color: #0056b3; /* 鼠标悬停时改变背景颜色 */
             }
+
+             #modal-close-btn {
+                display: block;
+                width: 100%;
+                padding: 20px;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                font-size: 25px;
+                margin: 0px;
+            }
     
     
         </style>
@@ -98,7 +109,60 @@
     <div id="result" class="dd"></div>
     <a id="backfjjj" href="https://dirny.github.io/dirny.githubmx.io/">默写记忆一下</a>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
     <script>
+        function showCustomAlert() {
+            Swal.fire({
+                title: '前言',
+                html: `
+                    <p>此web为本人背方剂时经常健忘又不能随时随刻翻书复习而写，无任何商业意图，如若我的朋友把他分享了给你并带给了你一点帮助那本人也会很开心，请勿恶意注入和攻击，它就是一个工具，还未上线，只是托管在了git上，没有任何安全防范，还请理性对待</p>
+                    <h1>web特色</h1>
+                    <p>1.为了统一记忆，本web所写方剂属性全为复刻教材(和大家在网上看的会有所出入)
+                        <br>2.输入方剂名可获取到该方剂属性，输入章节名还可获取到该章节下所有要求掌握的方剂及其属性
+                        <br>3.最下方可切换默写版本(实则为另一个域名，常用的话可以把这两个网址都保存下来，对照默写)
+                        <br>4.默写版本中方剂组成属性只要写全即正确，不需要顺序和课本上一致(其他属性暂未设置，如有需要可向本人反应)
+                        <br>5.写的时候顺手做了一些有意思的小细节，希望使用者能触发
+                    </p>
+                    <h2>介于本人水平不足且只是以简易使用为目的而做，若发现错误恳请大家指教。同时也欢迎使用者基于使用需求向本人提建议，期待与大家的交流</h2>
+                    <p>本人QQ:1357723672</p>
+                    <h3>最后祝大家期末都能取得好成绩！</h3>
+                `,
+                footer: `
+                    <button id="modal-close-btn">开始使用</button>
+                `,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+            })
+            document.getElementById('modal-close-btn').addEventListener('click', () => {
+                showSecondAlert()
+
+            });
+        }
+
+        function showSecondAlert() {
+            Swal.fire({
+                title: '以后再打开将不再弹出此弹窗',
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: '确定',
+                cancelButtonText: '返回',
+                html: `
+                    <p>确定不再看看吗？</p>
+                `
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.close();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    showCustomAlert();
+                }
+            });
+        }
+
+        if (!localStorage.getItem('customAlertExecuted')) {
+        showCustomAlert();
+        localStorage.setItem('customAlertExecuted', 'true');
+        }
+        
         function searchMedicine() {
             const searchTerm = document.getElementById("searchInput").value;
             if (!searchTerm.trim()) {
