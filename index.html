@@ -1527,7 +1527,7 @@
             if (matchingMedicines.length > 0) {
                 matchingMedicines.forEach(medicine => {
                     const medicineDiv = document.createElement("div");
-                    medicineDiv.innerHTML = `<h2>${medicine.方名}</h2><p>组成：${medicine.组成}</p><p>功用：${medicine.功用}</p><p>主治：${medicine.主治}</p><p>辩证要点：${medicine.辩证要点}</p><p>级别：${medicine.级别}</p>`;
+                    medicineDiv.innerHTML = `<h2>${medicine.方名}</h2><p>组成：${medicine.组成}</p><p>功用：${medicine.功用}</p><p>主治：${medicine.主治}</p><p>辩证要点：${medicine.辩证要点}</p><p>方歌：${medicine.方歌}</p><p>级别：${medicine.级别}</p>`;
                     resultDiv.appendChild(medicineDiv);
                 });
             } else {
