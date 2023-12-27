@@ -69,15 +69,15 @@
             }
 
             #backfjjj {
-            display: block; /* 将链接设置为块级元素，占据整行宽度 */
-            text-align: center; /* 文本居中对齐 */
-            margin: 20px 0; /* 设置上下外边距，调整链接与上下内容之间的间距 */
-            font-size: 30px; /* 设置字体大小 */
-            text-decoration: none; /* 去除下划线样式 */
-            background-color: skyblue; /* 背景颜色 */
-            color: #FFF; /* 文本颜色 */
-            padding: 10px 20px; /* 设置内边距，增加链接的点击区域 */
-            border-radius: 5px; /* 添加圆角边框 */
+                display: block; /* 将链接设置为块级元素，占据整行宽度 */
+                text-align: center; /* 文本居中对齐 */
+                margin: 20px 0; /* 设置上下外边距，调整链接与上下内容之间的间距 */
+                font-size: 30px; /* 设置字体大小 */
+                text-decoration: none; /* 去除下划线样式 */
+                background-color: skyblue; /* 背景颜色 */
+                color: #FFF; /* 文本颜色 */
+                padding: 10px 20px; /* 设置内边距，增加链接的点击区域 */
+                border-radius: 5px; /* 添加圆角边框 */
             }
 
             #backfjjj:hover {
@@ -106,7 +106,53 @@
             padding: 10px 20px; /* 设置内边距，增加链接的点击区域 */
             border-radius: 5px; /* 添加圆角边框 */
             }
-    
+            
+                    /* 美化弹窗样式 */
+                    .modal-container {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal {
+            background-color: #fff;
+            padding: 67px;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 60px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-button {
+            padding: 30px 67px;
+            font-size: 50px;
+            cursor: pointer;
+            background-color: #7b00ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .modal-button:hover {
+            background-color: #0056b3;
+        }
     
         </style>
 </head>
@@ -116,10 +162,45 @@
     
     <div id="result" class="dd"></div>
     <a id="ml" href="https://dirny.github.io/dirny.githubml.io/">目录</a>
-    <a id="backfjjj" href="https://dirny.github.io/dirny.githubmx.io/">默写记忆一下</a>
+    <button id="backfjjj">默写记忆一下</button>
+
+    <!-- 弹窗容器 -->
+    <div id="modalContainer" class="modal-container">
+        <!-- 自定义弹窗 -->
+        <div class="modal">
+            <div class="modal-header">请选择默写方式</div>
+            <div class="modal-buttons">
+                <button id="btnChapter" class="modal-button">按章默写</button>
+                <button id="btnRandom" class="modal-button">随机默写</button>
+            </div>
+        </div>
+    </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
     <script>
+        document.getElementById('backfjjj').addEventListener('click', function() {
+            // 显示弹窗
+            document.getElementById('modalContainer').style.display = 'flex';
+        });
+
+        // 处理按章默写按钮点击
+        document.getElementById('btnChapter').addEventListener('click', function() {
+            // 隐藏弹窗
+            document.getElementById('modalContainer').style.display = 'none';
+            
+            // 跳转到指定链接
+            window.location.href = "https://dirny.github.io/dirny.githubmx.io/";
+        });
+
+        // 处理随机默写按钮点击
+        document.getElementById('btnRandom').addEventListener('click', function() {
+            // 隐藏弹窗
+            document.getElementById('modalContainer').style.display = 'none';
+            
+            // 跳转到指定链接
+            window.location.href = "https://dirny.github.io/sjmx/";
+        });
+
         function showCustomAlert() {
             Swal.fire({
                 title: '前言',
